@@ -4,7 +4,7 @@ install: true
 
 addons:
   sonarcloud:
-    organization: "begarco"
+    organization: "facthunder"
 
 jdk:
 - oraclejdk8
@@ -19,3 +19,14 @@ cache:
 
 notifications:
   email: false
+  
+deploy:
+  provider: releases
+  api_key: "$GITHUB_TOKEN"
+  file_glob: true
+  file: "target/sonar-branch-plugin-*.jar"
+  skip_cleanup: true
+  name: "SonarQube Branch Plugin"
+  draft: true
+  on:
+    branch: master
